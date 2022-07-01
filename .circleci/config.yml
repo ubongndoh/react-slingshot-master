@@ -27,6 +27,18 @@ jobs:
           name: Test app
           command: npm run test
   # analyze:
+  analyze:
+    docker:
+      - image: node:10-alpine
+
+    steps:
+      - checkout
+      - run:
+          name: Install Node deps
+          command: npm install
+      - run:
+          name: Audit app
+          command: npm audit
 
 workflows:
   default:
@@ -35,6 +47,6 @@ workflows:
       - test:
           requires:
             - build
-      # - analyze:
-      #     requires:
-      #     - test
+      - analyze:
+          requires:
+            - test
