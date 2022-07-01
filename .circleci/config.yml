@@ -18,16 +18,14 @@ jobs:
     docker:
       - image: node:10-alpine
 
-      steps:
-         - checkout
-         - run:
-            name: Install Node deps
-            command: npm install
-         - run:
-            name: Run  test
-            command: npm run lint
-
-
+    steps:
+      - checkout
+      - run:
+          name: Install Node deps
+          command: npm install
+      - run:
+          name: Test app
+          command: npm run test
   # analyze:
 
 workflows:
